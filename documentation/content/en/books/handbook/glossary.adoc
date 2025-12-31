@@ -307,12 +307,15 @@ See crossref:glossary[ecoff-glossary,Extended COFF].
 ELF::
 See crossref:glossary[elf-glossary,Executable and Linking Format].
 
-ESP::
-See crossref:glossary[esp-glossary,Encapsulated Security Payload].
-
 [[esp-glossary]]
 Encapsulated Security Payload::
 {empty}
+
+ESP::
+See crossref:glossary[esp-glossary,Encapsulated Security Payload].
+
+EUI-64::
+EUI-64 (Extended Unique Identifier) is a way to automatically generate the local part of an IPv6 address. The lower part of the IPv6 address (64 bits) is generated from the MAC address of the interface. Since a MAC address only has 48 bits, it needs to be padded with 16 more bits. This is done by splitting the MAC address of the interface in half and insert FFFE in the middle. Finally, the Universal/Local bit (bit 7) is inverted.
 
 [[elf-glossary]]
 Executable and Linking Format::
@@ -743,6 +746,9 @@ PPP over Ethernet::
 
 PR::
 See crossref:glossary[pr-glossary,Problem Report].
+
+Privacy Extensions::
+{empty}
 
 PXE::
 See crossref:glossary[pxe-glossary,Preboot eXecution Environment].
