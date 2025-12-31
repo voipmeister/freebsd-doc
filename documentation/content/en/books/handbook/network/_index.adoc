@@ -491,11 +491,17 @@ Keep in mind that the applications can't bind to anycast addresses; in that case
 [[config-dynamic-ip-v6]]
 === Configuring Dynamic IPv6 Address
 
-To dynamically configure the IPv6 address of the interface using crossref:glossary[slaac-glossary,SLAAC], execute the following commands:
+To dynamically configure the IPv6 address of the interface using crossref:glossary[slaac-glossary,SLAAC], the system needs to respond to IPv6 Router Advertisements, so execute the following command:
 
 [source,shell]
 ....
 # sysrc ifconfig_em0_ipv6="inet6 accept_rtadv"
+....
+
+This will generate an IPv6 address based on the prefix assignment obtained from the router and crossref:glossary[slaac-glossary,EUI-64]. While this address is dynamically generated, it won't change until the MAC address of the interface changes. This might be fine for servers (although the MAC address is exposed globally), but it poses a privacy concern for roaming devices (e.g. laptops and phones). Since the local part of the address is based on the MAC address, it will always be the same. This makes it possible to track devices over the internet. This prompted link:http://tools.ietf.org/html/rfc4941[RFC 4941] for IPv6 SLAAC Privacy Extensions. When you enable privacy extensions, two random addresses will be generated based on the prefix assignment. These addresses have a limited lifetime. Over time, new connections will be made from the newly added address. Once the last connection from the oldest address is closed, that address will be discarded and a new random address will be added to the interface.
+
+[source,shell]
+....
 # sysrc rtsold_enable="YES"
 ....
 
